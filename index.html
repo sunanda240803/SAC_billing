@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAC Billing — Smart Accounting, Inventory, Projects & Live Charts OS</title>
+  <meta name="description" content="SAC Billing is the next-generation billing software platform featuring live financial charts, smart inventory management, project milestone billing, and GSTR reporting." />
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION (BRAND: SAC BILLING)
+       ========================================================================== -->
+  <header class="header">
+    <div class="container nav-wrapper">
+      <a href="#" class="logo-group">
+        <div class="logo-mark">SAC</div>
+        <div class="logo-text">SAC BILLING</div>
+        <span class="logo-tag">v3.4 LIVE</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#charts" class="nav-link">Live Charts</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#inventory" class="nav-link">Inventory</a></li>
+          <li><a href="#reports" class="nav-link">Reports</a></li>
+          <li><a href="#calculator" class="nav-link">GST Calc</a></li>
+          <li><a href="#pricing" class="nav-link">Pricing</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Nude Sub-theme Switcher -->
+        <div class="theme-switcher" title="Switch SAC Nude Palette">
+          <button class="theme-pill active" data-theme="warm-oat" title="Warm Oat & Champagne"></button>
+          <button class="theme-pill" data-theme="rose-silk" title="Pale Rose & Silk"></button>
+          <button class="theme-pill" data-theme="sage-ivory" title="Soft Sage & Ivory"></button>
+        </div>
+
+        <a href="#demoModal" class="btn btn-ghost btn-sm btn-open-modal">Sign In</a>
+        <a href="#demoModal" class="btn btn-primary btn-sm btn-open-modal">Start Free Trial ⚡</a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO SECTION WITH SAC LIVE INVOICE BUILDER
+       ========================================================================== -->
+  <section id="hero" class="hero-section">
+    <div class="container hero-grid">
+      
+      <!-- Left Column: Hero Text Content -->
+      <div class="hero-content">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          <span>⚡ SAC Platform: Over ₹750 Cr Billed Across 65,000+ Enterprises</span>
+        </div>
+
+        <h1 class="heading-lg">
+          Intelligence for <span class="font-serif text-accent">Inventory</span>, Projects & Invoicing.
+        </h1>
+
+        <p class="subtitle">
+          SAC Billing replaces legacy tools like Tally, Vyapar & Zoho with real-time interactive live charts, smart multi-warehouse inventory, project milestone billing, and automated GSTR tax reports in a calm nude pale aesthetic.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#charts" class="btn btn-primary btn-lg">
+            <span>Explore Live Charts</span>
+            <i>→</i>
+          </a>
+          <a href="#builderPaper" class="btn btn-secondary btn-lg">
+            <span>Try SAC Invoice Studio</span>
+          </a>
+        </div>
+
+        <div class="trust-ratings">
+          <div class="avatar-stack">
+            <div class="avatar-placeholder">SAC</div>
+            <div class="avatar-placeholder">RK</div>
+            <div class="avatar-placeholder">AN</div>
+            <div class="avatar-placeholder">+6k</div>
+          </div>
+          <div>
+            <div class="rating-stars">★★★★★ <strong style="color:var(--text-main);">4.95/5</strong></div>
+            <div class="rating-text">Rated #1 Billing OS for Retailers, Agencies & Wholesale</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Live Invoice Builder Widget -->
+      <div class="builder-widget glass-card" id="builderPaper">
+        <div class="builder-header">
+          <div class="builder-title-badge">
+            <h3 class="heading-sm">SAC Invoice Studio</h3>
+            <span class="live-indicator"><span class="live-dot"></span> REAL-TIME</span>
+          </div>
+
+          <div class="builder-mode-pills">
+            <button class="mode-pill active">B2B GST</button>
+            <button class="mode-pill">Project Billing</button>
+            <button class="mode-pill">Export USD</button>
+          </div>
+        </div>
+
+        <!-- Working Live Printable Paper -->
+        <div class="invoice-paper" id="invoicePaper">
+          <div class="inv-row-grid">
+            <div class="inv-field">
+              <label>SELLER / BUSINESS</label>
+              <input type="text" id="invSellerNameInput" value="SAC Global Solutions Pvt Ltd" />
+            </div>
+            <div class="inv-field">
+              <label>INVOICE NO.</label>
+              <input type="text" id="invNumberInput" value="SAC-INV-2026-089" />
+            </div>
+          </div>
+
+          <div class="inv-row-grid">
+            <div class="inv-field">
+              <label>BILL TO CLIENT</label>
+              <input type="text" id="invBuyerNameInput" value="Vanguard Creative Studios" />
+            </div>
+            <div class="inv-field">
+              <label>GSTIN / TAX ID</label>
+              <input type="text" value="27AAACS1234F1Z0" />
+            </div>
+          </div>
+
+          <!-- Items Table -->
+          <div class="items-table-wrapper">
+            <table class="items-table">
+              <thead>
+                <tr>
+                  <th style="width:40%;">Item / Service Description</th>
+                  <th>Qty</th>
+                  <th>Rate (₹)</th>
+                  <th>GST %</th>
+                  <th style="text-align:right;">Amount</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="builderItemsContainer">
+                <tr class="inv-item-row">
+                  <td><input type="text" value="SAC Enterprise Software Subscription (1 Yr)" class="item-name-input" /></td>
+                  <td><input type="number" value="1" min="1" class="qty-input" /></td>
+                  <td><input type="number" value="12000" step="100" class="rate-input" /></td>
+                  <td>
+                    <select class="tax-select">
+                      <option value="18" selected>18%</option>
+                      <option value="12">12%</option>
+                      <option value="5">5%</option>
+                      <option value="0">0%</option>
+                    </select>
+                  </td>
+                  <td><span class="row-total-val">₹14,160.00</span></td>
+                  <td><button class="btn-remove-row" title="Remove row">✕</button></td>
+                </tr>
+                <tr class="inv-item-row">
+                  <td><input type="text" value="Project Milestone #1 Setup & Onboarding" class="item-name-input" /></td>
+                  <td><input type="number" value="1" min="1" class="qty-input" /></td>
+                  <td><input type="number" value="4500" step="100" class="rate-input" /></td>
+                  <td>
+                    <select class="tax-select">
+                      <option value="18" selected>18%</option>
+                      <option value="12">12%</option>
+                      <option value="5">5%</option>
+                      <option value="0">0%</option>
+                    </select>
+                  </td>
+                  <td><span class="row-total-val">₹5,310.00</span></td>
+                  <td><button class="btn-remove-row" title="Remove row">✕</button></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <button type="button" class="btn-add-item" id="btnAddItemRow">
+              <span>+ Add SAC Line Item</span>
+            </button>
+          </div>
+
+          <!-- Invoice Summary & Payment QR -->
+          <div class="inv-summary-grid">
+            <div class="inv-qr-box">
+              <svg class="qr-code-img" viewBox="0 0 100 100" fill="var(--text-main)">
+                <rect x="5" y="5" width="30" height="30" fill="none" stroke="currentColor" stroke-width="6"/>
+                <rect x="12" y="12" width="16" height="16"/>
+                <rect x="65" y="5" width="30" height="30" fill="none" stroke="currentColor" stroke-width="6"/>
+                <rect x="72" y="12" width="16" height="16"/>
+                <rect x="5" y="65" width="30" height="30" fill="none" stroke="currentColor" stroke-width="6"/>
+                <rect x="12" y="72" width="16" height="16"/>
+                <rect x="50" y="50" width="12" height="12"/>
+                <rect x="70" y="65" width="15" height="15"/>
+                <rect x="50" y="75" width="15" height="15"/>
+              </svg>
+              <div class="qr-info">
+                <strong>SAC Direct UPI QR</strong>
+                <span>GPay, PhonePe, Paytm, Banking</span>
+              </div>
+            </div>
+
+            <div class="inv-totals-box">
+              <div class="inv-total-line">
+                <span>Subtotal (Excl. Tax)</span>
+                <strong id="invSubtotal">₹16,500.00</strong>
+              </div>
+              <div class="inv-total-line">
+                <span>CGST (9%)</span>
+                <span id="invCgst">₹1,485.00</span>
+              </div>
+              <div class="inv-total-line">
+                <span>SGST (9%)</span>
+                <span id="invSgst">₹1,485.00</span>
+              </div>
+              <div class="inv-total-line grand-total">
+                <span>Grand Total</span>
+                <span id="invGrandTotal" class="grand-total-val">₹19,470.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Toolbar -->
+        <div class="builder-actions">
+          <button class="btn btn-secondary btn-sm" id="btnPrintInvoice">
+            <span>🖨️ Download / Print PDF</span>
+          </button>
+          <button class="btn btn-primary btn-sm" id="btnSendWhatsapp">
+            <span>📲 Send via WhatsApp</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       3D NUDE GLASS DASHBOARD SHOWCASE (REPLACES STATIC IMAGE)
+       ========================================================================== -->
+  <section style="padding: 20px 24px 70px 24px;">
+    <div class="container nude-glass-hero-wrapper">
+      
+      <!-- Floating Glass Overlay Badges -->
+      <div class="floating-glass-badge badge-top-right btn-open-modal">
+        <span>📄</span>
+        <span>Create New Invoice — 1 new notification</span>
+      </div>
+
+      <div class="floating-glass-badge badge-bottom-mid btn-open-modal">
+        <span>📄</span>
+        <span>Create New Invoice</span>
+      </div>
+
+      <div class="floating-glass-badge badge-bottom-right" id="badgeSendReminder">
+        <span>✈️</span>
+        <span>Send Reminder</span>
+      </div>
+
+      <!-- Main Glass Dashboard Container -->
+      <div class="glass-dash-container">
+        
+        <!-- Left Glass Sidebar -->
+        <div class="dash-sidebar">
+          <div class="dash-nav-item active">
+            <span class="dash-icon-box">📊</span>
+            <span>Dashboard</span>
+          </div>
+          <div class="dash-nav-item">
+            <span class="dash-icon-box">📄</span>
+            <span>Invoices</span>
+          </div>
+          <div class="dash-nav-item">
+            <span class="dash-icon-box">💳</span>
+            <span>Payments</span>
+          </div>
+          <div class="dash-nav-item">
+            <span class="dash-icon-box">👥</span>
+            <span>Clients</span>
+          </div>
+          <div class="dash-nav-item">
+            <span class="dash-icon-box">⚙️</span>
+            <span>Settings</span>
+          </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dash-content-grid">
+          
+          <!-- Panel 1: Invoices Overview -->
+          <div class="dash-panel-card">
+            <div class="dash-panel-header">
+              <h4 class="dash-panel-title">Invoices Overview</h4>
+              <button class="btn-new-inv-pill btn-open-modal">+ New Invoice</button>
+            </div>
+
+            <table class="dash-table">
+              <thead>
+                <tr>
+                  <th>Line Item</th>
+                  <th>Qty</th>
+                  <th>Unit Price</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="dashOverviewTbody">
+                <tr>
+                  <td>
+                    <strong>Consulting Services</strong>
+                    <span class="inv-name-sub">2 com. Items</span>
+                  </td>
+                  <td>1</td>
+                  <td>$30.00</td>
+                  <td><span class="status-pill draft">Draft</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Design Mockups</strong>
+                    <span class="inv-name-sub">2 cons. Items</span>
+                  </td>
+                  <td>1</td>
+                  <td>$75.00</td>
+                  <td><span class="status-pill pending">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Design Mockups</strong>
+                    <span class="inv-name-sub">2 cons. Item</span>
+                  </td>
+                  <td>1</td>
+                  <td>$20.00</td>
+                  <td><span class="status-pill paid">Paid</span></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-light); padding-top:10px;">
+              <span style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">Total Amount</span>
+              <strong style="font-family:var(--font-mono); font-size:1.1rem; color:var(--accent-secondary);" id="dashTotalVal">$158.00</strong>
+            </div>
+          </div>
+
+          <!-- Panel 2: Revenue This Month -->
+          <div class="dash-panel-card">
+            <div class="dash-panel-header">
+              <div>
+                <h4 class="dash-panel-title">Revenue This Month</h4>
+                <span style="font-size:0.7rem; color:var(--text-subtle);">Last 30 Days ∨</span>
+              </div>
+            </div>
+
+            <!-- 3D Bar Chart -->
+            <div class="bar-chart-flex">
+              <div class="bar-col">
+                <div class="bar-track" style="height:60px;"><div class="bar-fill" style="height:55%;"></div></div>
+                <span class="bar-day">Mon</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar-track" style="height:75px;"><div class="bar-fill" style="height:70%;"></div></div>
+                <span class="bar-day">Tue</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar-track" style="height:45px;"><div class="bar-fill" style="height:40%;"></div></div>
+                <span class="bar-day">Wed</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar-track" style="height:100px;"><div class="bar-fill" style="height:90%;"></div></div>
+                <span class="bar-day">Thu</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar-track" style="height:65px;"><div class="bar-fill" style="height:60%;"></div></div>
+                <span class="bar-day">Fri</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar-track" style="height:80px;"><div class="bar-fill" style="height:75%;"></div></div>
+                <span class="bar-day">Sat</span>
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-light); padding-top:10px;">
+              <span style="font-size:0.75rem; color:var(--text-subtle);">Total Last 30 Days</span>
+              <strong style="font-family:var(--font-mono); font-size:1.1rem; color:var(--text-main);">$108.00</strong>
+            </div>
+          </div>
+
+          <!-- Panel 3: Outstanding Payments -->
+          <div class="dash-panel-card">
+            <div class="dash-panel-header">
+              <h4 class="dash-panel-title">Outstanding Payments</h4>
+            </div>
+
+            <!-- 3D Glass Donut Chart -->
+            <div class="donut-container">
+              <svg class="donut-svg" viewBox="0 0 100 100">
+                <defs>
+                  <linearGradient id="donutGradient" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="var(--accent-gold)" />
+                    <stop offset="100%" stop-color="var(--accent-primary)" />
+                  </linearGradient>
+                </defs>
+                <circle class="donut-ring-bg" cx="50" cy="50" r="35" fill="none" />
+                <circle class="donut-ring-fill" cx="50" cy="50" r="35" fill="none" />
+              </svg>
+
+              <div class="donut-legend">
+                <div class="legend-line">
+                  <span><span class="legend-dot prop"></span>Proportions</span>
+                  <strong>$0.00</strong>
+                </div>
+                <div class="legend-line">
+                  <span><span class="legend-dot out"></span>Outstanding</span>
+                  <strong style="color:var(--accent-secondary);">$26.00</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SAC LIVE CHARTS & ANALYTICS WIDGET
+       ========================================================================== -->
+  <section id="charts" class="section-padding live-charts-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Live Analytics</span>
+        <h2 class="heading-md">Real-Time Financial Charts & Cash Flow Trends</h2>
+        <p class="subtitle">Monitor sales velocity, pending receivables, and expense breakdowns with interactive SVG live charts.</p>
+      </div>
+
+      <div class="charts-box glass-card">
+        <!-- SVG Interactive Chart Column -->
+        <div class="chart-main-card">
+          <div class="chart-header-controls">
+            <div>
+              <span style="font-size:0.8rem; color:var(--text-subtle); text-transform:uppercase; font-weight:700;">GROSS REVENUE STREAM</span>
+              <h3 class="heading-md" id="chartTotalRev" style="font-family:var(--font-mono);">₹7,48,200</h3>
+            </div>
+
+            <div class="chart-period-pills">
+              <button class="chart-pill" data-period="7d">7 Days</button>
+              <button class="chart-pill active" data-period="30d">30 Days</button>
+              <button class="chart-pill" data-period="1y">1 Year</button>
+            </div>
+          </div>
+
+          <!-- Dynamic SVG Vector Line Chart -->
+          <div class="svg-chart-container">
+            <svg class="chart-svg" viewBox="0 0 800 200" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="var(--accent-primary)" stop-opacity="0.3" />
+                  <stop offset="100%" stop-color="var(--accent-primary)" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+              <!-- Filled Area -->
+              <path d="M 0 170 Q 120 140 240 80 T 480 110 T 720 30 T 800 15 L 800 200 L 0 200 Z" fill="url(#chartGradient)" />
+              <!-- Smooth Curved Line -->
+              <path id="chartPathSegment" d="M 0 170 Q 120 140 240 80 T 480 110 T 720 30 T 800 15" fill="none" stroke="var(--accent-secondary)" stroke-width="4" stroke-linecap="round" />
+            </svg>
+            <div class="chart-tooltip-box">
+              <span style="font-size:0.7rem; text-transform:uppercase; opacity:0.8;">Live Trend</span>
+              <strong id="chartTooltipVal">₹1,84,500 peak week</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side KPI Metrics -->
+        <div class="charts-side-metrics">
+          <div class="metric-mini-card">
+            <div>
+              <div style="font-size:0.8rem; color:var(--text-muted);">Collected Receivables</div>
+              <div class="metric-val">₹5,92,400</div>
+            </div>
+            <span class="metric-trend">+18.4%</span>
+          </div>
+
+          <div class="metric-mini-card">
+            <div>
+              <div style="font-size:0.8rem; color:var(--text-muted);">Outstanding Pending</div>
+              <div class="metric-val" style="color:#C62828;">₹1,55,800</div>
+            </div>
+            <span class="metric-trend" style="background:#FFEBEE; color:#C62828;">3 Overdue</span>
+          </div>
+
+          <div class="metric-mini-card">
+            <div>
+              <div style="font-size:0.8rem; color:var(--text-muted);">Inventory Asset Value</div>
+              <div class="metric-val">₹12,40,000</div>
+            </div>
+            <span class="metric-trend">1,245 SKUs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SAC PROJECTS & CLIENT MILESTONE BILLING MODULE
+       ========================================================================== -->
+  <section id="projects" class="section-padding projects-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Project OS</span>
+        <h2 class="heading-md">Client Project Billing & Milestone Tracking</h2>
+        <p class="subtitle">Track project budgets, billable hours, milestone releases, and profit margins per client engagement.</p>
+      </div>
+
+      <div class="projects-grid">
+        
+        <!-- Project 1 -->
+        <div class="project-card glass-card">
+          <div class="project-meta">
+            <span class="project-status active">In Progress</span>
+            <span style="font-family:var(--font-mono); font-size:0.85rem; font-weight:700;">₹4,50,000</span>
+          </div>
+          <div>
+            <h3 class="heading-sm">Web Application Redesign</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted);">Client: Vanguard Studios</p>
+          </div>
+          <div class="project-progress-row">
+            <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-weight:700;">
+              <span>Milestone 2 of 4</span>
+              <span>65% Paid</span>
+            </div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:65%;"></div></div>
+          </div>
+          <div class="project-milestones">
+            <span>✔ Discovery & Wireframes (₹1,50,000 Paid)</span>
+            <span>⏳ Frontend Implementation (₹1,50,000 Pending)</span>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card glass-card">
+          <div class="project-meta">
+            <span class="project-status review">Milestone Review</span>
+            <span style="font-family:var(--font-mono); font-size:0.85rem; font-weight:700;">₹8,20,000</span>
+          </div>
+          <div>
+            <h3 class="heading-sm">ERP Warehouse Integration</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted);">Client: Apex Logistics Ltd</p>
+          </div>
+          <div class="project-progress-row">
+            <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-weight:700;">
+              <span>Milestone 3 of 3</span>
+              <span>90% Paid</span>
+            </div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:90%;"></div></div>
+          </div>
+          <div class="project-milestones">
+            <span>✔ Barcode API Sync (₹3,00,000 Paid)</span>
+            <span>✔ SAP Connector (₹4,20,000 Paid)</span>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card glass-card">
+          <div class="project-meta">
+            <span class="project-status completed">Completed</span>
+            <span style="font-family:var(--font-mono); font-size:0.85rem; font-weight:700;">₹2,80,000</span>
+          </div>
+          <div>
+            <h3 class="heading-sm">Brand Identity & Package Design</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted);">Client: Aurelia Organics</p>
+          </div>
+          <div class="project-progress-row">
+            <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-weight:700;">
+              <span>Fully Settled</span>
+              <span>100% Paid</span>
+            </div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%;"></div></div>
+          </div>
+          <div class="project-milestones">
+            <span>✔ All Milestones Released</span>
+            <span>✔ Tax Invoice Delivered on WhatsApp</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SAC SMART INVENTORY MANAGEMENT SUITE
+       ========================================================================== -->
+  <section id="inventory" class="section-padding features-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Inventory Suite</span>
+        <h2 class="heading-md">Smart Stock Control & Barcode Scanning</h2>
+        <p class="subtitle">Multi-warehouse stock tracking, low-inventory notifications, and automated purchase orders.</p>
+      </div>
+
+      <div class="tab-content-panel active">
+        <div class="tab-info">
+          <h3 class="heading-md">Real-Time SKU Valuation & Barcode Integration</h3>
+          <p class="subtitle">Maintain accurate stock counts with instant camera/POS barcode scanning, serial number tracking, and reorder point alerts.</p>
+          <ul class="feature-list">
+            <li class="feature-item">
+              <span class="feature-icon-check">✓</span>
+              <span>Scan products with any wireless barcode scanner or mobile phone camera.</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon-check">✓</span>
+              <span>Batch number & expiry date tracking for pharmaceutical and retail stock.</span>
+            </li>
+            <li class="feature-item">
+              <span class="feature-icon-check">✓</span>
+              <span>Auto-generate vendor purchase orders when stock reaches safety thresholds.</span>
+            </li>
+          </ul>
+          <div>
+            <a href="#demoModal" class="btn btn-primary btn-open-modal">Explore Inventory Module</a>
+          </div>
+        </div>
+        <div class="tab-visual-box">
+          <img src="images/inventory-feature.jpg" alt="SAC Smart Inventory Management Interface" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SAC FINANCIAL REPORTS HUB
+       ========================================================================== -->
+  <section id="reports" class="section-padding reports-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Audit & Compliance</span>
+        <h2 class="heading-md">Automated Financial Reports Hub</h2>
+        <p class="subtitle">Generate audit-ready P&L statements, GSTR-1, GSTR-3B, and Inventory Valuation reports in 1 click.</p>
+      </div>
+
+      <div class="reports-hub-grid">
+        
+        <div class="report-item-card glass-card">
+          <div class="report-icon">📊</div>
+          <h3 class="heading-sm">GSTR-1 & 3B Returns</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted);">CA-certified JSON export directly uploadable to the GST Portal.</p>
+          <a href="#" class="btn-download-chip" data-report="GSTR-1">
+            <span>Download Excel / JSON</span> <i>↓</i>
+          </a>
+        </div>
+
+        <div class="report-item-card glass-card">
+          <div class="report-icon">📈</div>
+          <h3 class="heading-sm">Profit & Loss (P&L)</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted);">Real-time revenue, cost of goods sold (COGS), and operational net profit.</p>
+          <a href="#" class="btn-download-chip" data-report="Profit & Loss">
+            <span>Export P&L PDF</span> <i>↓</i>
+          </a>
+        </div>
+
+        <div class="report-item-card glass-card">
+          <div class="report-icon">📦</div>
+          <h3 class="heading-sm">Inventory Valuation</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted);">FIFO / Average cost stock valuation report across all branches.</p>
+          <a href="#" class="btn-download-chip" data-report="Stock Valuation">
+            <span>Download CSV</span> <i>↓</i>
+          </a>
+        </div>
+
+        <div class="report-item-card glass-card">
+          <div class="report-icon">⏳</div>
+          <h3 class="heading-sm">Ageing Receivables</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted);">30-60-90 day overdue breakdown for aggressive debt collection.</p>
+          <a href="#" class="btn-download-chip" data-report="Ageing Receivables">
+            <span>Export Summary</span> <i>↓</i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       INTERACTIVE GST & PROFIT CALCULATOR
+       ========================================================================== -->
+  <section id="calculator" class="section-padding calc-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Interactive Tool</span>
+        <h2 class="heading-md">Real-Time GST & Margin Calculator</h2>
+        <p class="subtitle">Calculate exact CGST, SGST, IGST breakdown, net invoice cost, and profit margin before sending your quote.</p>
+      </div>
+
+      <div class="calc-box glass-card">
+        <div class="calc-inputs">
+          <div class="inv-field">
+            <label>GST Mode</label>
+            <div class="calc-mode-switch">
+              <button class="calc-mode-btn active" data-mode="exclusive">Exclusive (Add Tax)</button>
+              <button class="calc-mode-btn" data-mode="inclusive">Inclusive (Extract Tax)</button>
+            </div>
+          </div>
+
+          <div class="inv-row-grid">
+            <div class="inv-field">
+              <label>Cost Price (₹)</label>
+              <input type="number" id="calcCost" value="800" step="10" />
+            </div>
+            <div class="inv-field">
+              <label>Selling Price (₹)</label>
+              <input type="number" id="calcSell" value="1200" step="10" />
+            </div>
+          </div>
+
+          <div class="inv-field">
+            <label>Quantity</label>
+            <input type="number" id="calcQty" value="10" min="1" />
+          </div>
+
+          <div class="inv-field">
+            <label>Select Tax Slab</label>
+            <div class="slab-buttons">
+              <button class="slab-btn" data-slab="5">5%</button>
+              <button class="slab-btn" data-slab="12">12%</button>
+              <button class="slab-btn active" data-slab="18">18%</button>
+              <button class="slab-btn" data-slab="28">28%</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-results-card">
+          <h4 class="heading-sm">Tax & Margin Breakdown</h4>
+          <div class="result-item"><span class="result-label">Net Subtotal</span><span class="result-val" id="resNetVal">₹12,000.00</span></div>
+          <div class="result-item"><span class="result-label">CGST (9%)</span><span class="result-val" id="resCgstVal">₹1,080.00</span></div>
+          <div class="result-item"><span class="result-label">SGST (9%)</span><span class="result-val" id="resSgstVal">₹1,080.00</span></div>
+          <div class="result-item"><span class="result-label">Gross Total</span><span class="result-val highlight" id="resGrossVal">₹14,160.00</span></div>
+
+          <div class="profit-progress-wrapper">
+            <div class="profit-header"><span>Estimated Profit</span><span id="resProfitVal">₹4,000.00</span></div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" id="resMarginFill" style="width: 33.3%;"></div></div>
+            <div style="font-size:0.78rem; color:var(--text-muted); margin-top:6px; text-align:right;">
+              Margin: <strong id="resMarginPct">33.3%</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       DYNAMIC PRICING CALCULATOR
+       ========================================================================== -->
+  <section id="pricing" class="section-padding pricing-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Transparent Plans</span>
+        <h2 class="heading-md">Simple SAC Billing Pricing</h2>
+        <p class="subtitle">Scale seamlessly as your monthly transaction volume grows. 14-day free trial on all plans.</p>
+      </div>
+
+      <div class="pricing-controls">
+        <div class="cycle-toggle">
+          <button class="cycle-btn active" data-cycle="yearly">Annual Billing <span class="save-badge">SAVE 20%</span></button>
+          <button class="cycle-btn" data-cycle="monthly">Monthly Billing</button>
+        </div>
+
+        <div class="pricing-sliders-box">
+          <div class="slider-group">
+            <div class="slider-header"><span>Monthly Invoices:</span><span class="slider-val" id="valInvoices">500</span></div>
+            <input type="range" id="sliderInvoices" min="50" max="5000" step="50" value="500" class="custom-range" />
+          </div>
+          <div class="slider-group">
+            <div class="slider-header"><span>Staff Accounts:</span><span class="slider-val" id="valUsers">3</span></div>
+            <input type="range" id="sliderUsers" min="1" max="25" step="1" value="3" class="custom-range" />
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card glass-card">
+          <div class="price-header">
+            <h3 class="price-title">Starter</h3>
+            <p class="price-desc">Freelancers & small retail shops.</p>
+            <div class="price-amount-wrap"><span class="price-currency">₹</span><span class="price-amount" id="priceStarter">239</span><span class="price-period">/ month</span></div>
+          </div>
+          <ul class="price-features-list">
+            <li class="price-feature-item">✓ Up to 150 Invoices / mo</li>
+            <li class="price-feature-item">✓ 1 Staff Account</li>
+            <li class="price-feature-item">✓ Basic Inventory</li>
+          </ul>
+          <a href="#demoModal" class="btn btn-secondary btn-open-modal">Get Started Free</a>
+        </div>
+
+        <div class="pricing-card glass-card popular">
+          <span class="popular-badge">MOST POPULAR</span>
+          <div class="price-header">
+            <h3 class="price-title">Growth Business</h3>
+            <p class="price-desc">Distributors, agencies & multi-store brands.</p>
+            <div class="price-amount-wrap"><span class="price-currency">₹</span><span class="price-amount" id="priceGrowth">559</span><span class="price-period">/ month</span></div>
+          </div>
+          <ul class="price-features-list">
+            <li class="price-feature-item">✓ Unlimited Invoices</li>
+            <li class="price-feature-item">✓ SAC Live Charts & Analytics</li>
+            <li class="price-feature-item">✓ Project Milestone Billing</li>
+            <li class="price-feature-item">✓ Smart Barcode Inventory</li>
+          </ul>
+          <a href="#demoModal" class="btn btn-primary btn-open-modal">Start 14-Day Free Trial</a>
+        </div>
+
+        <div class="pricing-card glass-card">
+          <div class="price-header">
+            <h3 class="price-title">Enterprise</h3>
+            <p class="price-desc">High-volume enterprises & multi-branch groups.</p>
+            <div class="price-amount-wrap"><span class="price-currency">₹</span><span class="price-amount" id="priceEnterprise">1,359</span><span class="price-period">/ month</span></div>
+          </div>
+          <ul class="price-features-list">
+            <li class="price-feature-item">✓ Unlimited Invoices & Staff</li>
+            <li class="price-feature-item">✓ Custom Financial Reports Hub</li>
+            <li class="price-feature-item">✓ Dedicated Account Manager</li>
+          </ul>
+          <a href="#demoModal" class="btn btn-secondary btn-open-modal">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       INTERACTIVE FAQ ACCORDION WITH LIVE SEARCH
+       ========================================================================== -->
+  <section id="faq" class="section-padding faq-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Answers</span>
+        <h2 class="heading-md">Frequently Asked Questions</h2>
+        <p class="subtitle">Search or click any question below for quick answers about SAC Billing.</p>
+      </div>
+
+      <div class="faq-search-box">
+        <span class="faq-search-icon">🔍</span>
+        <input type="text" id="faqSearchInput" class="faq-search-input" placeholder="Search questions (e.g., Tally, GST, projects, charts)..." />
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item open">
+          <button class="faq-question">
+            <span>What makes SAC Billing different from Tally or Vyapar?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            SAC Billing incorporates real-time interactive live financial charts, client project milestone tracking, barcode multi-warehouse inventory, and automated GSTR reports in an ultra-clean nude pale interface.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can SAC Billing track client project milestones & billable hours?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Yes! SAC Billing includes a full Project OS module to create client milestones, track progress, log billable hours, and release milestone invoices automatically.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How does the live charts feature work?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Our live charts render vector graphs updated in real-time as sales and payments occur, allowing you to toggle between 7-day, 30-day, and annual cash flow projections.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CTA BANNER & FOOTER
+       ========================================================================== -->
+  <section style="padding:0 24px;">
+    <div class="container">
+      <div class="cta-banner">
+        <div class="cta-content">
+          <h2 class="heading-lg">Transform Your Billing & Inventory with SAC</h2>
+          <p class="subtitle">Join 65,000+ businesses using SAC Billing to manage cash flow, inventory, and projects.</p>
+          <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
+            <a href="#demoModal" class="btn btn-primary btn-lg btn-open-modal">Start 14-Day Free Trial ⚡</a>
+            <a href="#hero" class="btn btn-secondary btn-lg" style="color:var(--text-main);">Try Demo Studio</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-group">
+            <div class="logo-mark">SAC</div>
+            <div class="logo-text">SAC BILLING</div>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-muted); max-width:280px; margin-top:8px;">
+            Smart Accounting, Inventory & Commerce OS designed for modern trade and global teams.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Product</h4>
+          <ul class="footer-links">
+            <li><a href="#charts">Live Charts</a></li>
+            <li><a href="#projects">Project Billing</a></li>
+            <li><a href="#inventory">Smart Inventory</a></li>
+            <li><a href="#reports">Reports Hub</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#">GSTR-1 Guide</a></li>
+            <li><a href="#">Inventory Valuation</a></li>
+            <li><a href="#">Tally Migration Tool</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="#">About SAC Billing</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 SAC Billing Technologies Inc. All rights reserved.</div>
+        <div class="compliance-badges">
+          <span class="compliance-chip">🔒 256-bit SSL</span>
+          <span class="compliance-chip">🛡️ ISO 27001 Certified</span>
+          <span class="compliance-chip">⚡ GSTN GSP Partner</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Free Trial Modal -->
+  <div class="modal-overlay" id="demoModal">
+    <div class="modal-card">
+      <button class="modal-close" id="closeModal">✕</button>
+      <div style="text-align:center; margin-bottom:18px;">
+        <h3 class="heading-md">Start 14-Day SAC Free Trial</h3>
+        <p style="font-size:0.82rem; color:var(--text-muted);">No credit card required. Setup takes under 60 seconds.</p>
+      </div>
+
+      <form id="wizardForm" style="display:flex; flex-direction:column; gap:14px;">
+        <div class="inv-field"><label>Full Name</label><input type="text" required placeholder="e.g. Vikram Sharma" /></div>
+        <div class="inv-field"><label>Business Name</label><input type="text" required placeholder="e.g. SAC Trade Systems" /></div>
+        <div class="inv-field"><label>Mobile Number</label><input type="tel" required placeholder="+91 98765 43210" /></div>
+        <button type="submit" class="btn btn-primary btn-lg" style="margin-top:8px;">
+          <span>Create SAC Free Account 🚀</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
